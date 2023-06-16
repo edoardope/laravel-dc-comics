@@ -6,6 +6,23 @@ comics | all comics
 
 @section( 'content' )
 
-<h1>il contenuto va qui</h1>
+
+<section class="container-fluid">
+    <div class="row p-5 justify-content-between">
+
+        @foreach ($comics as $item)
+
+        <div class="card indexc mb-5">
+            <img class="card-img-top" src="{{$item->thumb}}" alt="Title">
+            <div class="card-body">
+                <h4 class="card-title text-center">{{$item->title}}</h4>
+                <p class="card-text text-center">{{$item->description}}</p>
+            </div>
+        </div>
+
+        @endforeach
+
+    </div>
+</section>
 
 @endSection
