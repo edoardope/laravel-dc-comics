@@ -12,13 +12,13 @@ comics | all comics
 
         @foreach ($comics as $item)
 
-        <div class="card indexc mb-5">
-            <img class="card-img-top" src="{{$item->thumb}}" alt="Title">
-            <div class="card-body">
-                <h4 class="card-title text-center">{{$item->title}}</h4>
-                <p class="card-text text-center">{{$item->description}}</p>
-            </div>
-        </div>
+        <a class="card indexc mb-5" href="{{ route('comics.show', ['comic' => $item->id]) }}">
+                <img class="card-img-top imgi" src="{{$item->thumb}}" alt="Title">
+                <div class="card-body">
+                    <h4 class="card-title text-center">{{$item->title}}</h4>
+                    <p class="card-text text-center">{{$item->description}}</p>
+                </div>
+        </a>
 
         @endforeach
 
