@@ -19,6 +19,16 @@ comics | all comics
                     <p class="card-text text-center">{{$item->description}}</p>
                 </div>
         </a>
+        <form action="{{ route('comics.destroy', $item) }}" method="POST">
+
+            @csrf
+
+            @method('DELETE')
+            
+            <button>elimina</button>
+              
+        </form>
+        <a class="card-text text-center" href="{{ route('comics.edit', ['comic' => $item->id]) }}">edit</a>
 
         @endforeach
 
