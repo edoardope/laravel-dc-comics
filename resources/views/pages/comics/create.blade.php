@@ -6,13 +6,28 @@ comics | create
 
 @section('content')
 <section class="container p-5">
+    @if($errors->any())
+    <div class="alert alert-danger" role="alert">
+        <ul>
+            @foreach ($errors->all() as $error)
+               <li>{{$error}}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+    
     <div class="row">
         <form action="{{ route('comics.store') }}" method="POST">
             @csrf
 
             <h1 class="pb-3">create new entry</h1>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="title">
+                <input type="text" class="form-control @error('title') is-invalid @enderror" id="floatingInput" placeholder="name@example.com" name="title">
+                @error('title')
+                <div class="alert alert-danger" role="alert"> 
+                    {{$message}}
+                </div>
+                @enderror
                 <label for="floatingInput">Title</label>
             </div>
             <div class="form-floating mb-3">

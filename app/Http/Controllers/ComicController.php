@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comic;
 use Illuminate\Http\Request;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class ComicController extends Controller
 {
@@ -37,6 +38,15 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'title' => 'required'
+            ],
+            [
+                'title.required' => 'il titolo non può essere vuoto'
+            ]
+        );
+
         $form_data = $request->all();
 
         $new_comic = new Comic();
