@@ -25,10 +25,10 @@ comics | all comics
 
             @method('DELETE')
             
-            <button>elimina</button>
+            <button class="delete-button">elimina</button>
               
         </form>
-        <a class="card-text text-center" href="{{ route('comics.edit', ['comic' => $item->id]) }}">edit</a>
+        <a class="card-text text-center edit-button" href="{{ route('comics.edit', ['comic' => $item->id]) }}">edit</a>
 
         @endforeach
 
@@ -36,3 +36,28 @@ comics | all comics
 </section>
 
 @endSection
+
+@push('scripts')
+<script>
+    let deleteButtons = document.querySelectorAll('.delete-button');
+
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            if (!confirm('Sei sicuro di voler eseguire questa azione?')) {
+                event.preventDefault();
+            }
+        });
+    });
+
+    let editButtons = document.querySelectorAll('.edit-button');
+
+    editButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            if (!confirm('Sei sicuro di voler eseguire questa azione?')) {
+                event.preventDefault();
+            }
+        });
+    });
+</script>
+
+@endpush
